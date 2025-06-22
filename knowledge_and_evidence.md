@@ -70,36 +70,36 @@ python3 main.py
 
    | Type                    | name       | value          |
    | ----------              | ---------- | -------------- |
-   | built-in primitive type | _          |  _             |
-   | built-in composite type | _          |  _             |
-   | user-defined type       | _          |  _             |
+   | built-in primitive type |  O         |  (0,0,0)             |
+   | built-in composite type | pixels          |  list of 64 tuples             |
+   | user-defined type       | sense_hat          |  SenseHat()             |
 
 2. Fill in (`_`) the following table based on the code in `smiley.py`:
 
    | Object                   | Type                    |
    | ------------             | ----------------------- |
-   | self.pixels              | _                       |
-   | A member of self.pixels  | _                       |
-   | self                     | _                       |
+   | self.pixels              | list                       |
+   | A member of self.pixels  | tuple                    |
+   | self                     | object                   |
 
 3. Examine the code for `smiley.py`, `sad.py`, and `happy.py`. Give an example of each of the following control structures using an example from **each** of these files. Include the first line and the line range:
 
    | Control Flow | File       | First line  | Line range  |
    | ------------ | ---------- | ----------- | ----------- |
-   |  sequence    |  _         | _           | _           |
-   |  selection   | _          | _           | _           |
-   |  iteration   | _          | _           | _           |
+   |  sequence    | happy.py        |draw_eyes()           | 24-30           |
+   |  selection   | sad.py         | draw_eyes()          | 25-30           |
+   |  iteration   | smiley.py          |show()           | 37-39          |
 
 4. Though everything in Python is an object, it is sometimes said to have four "primitive" types. Examining the three files `smiley.py`, `sad.py`, and `happy.py`, identify which of the following types are used in any of these files, and give an example of each (use an example from the code, if applicable, otherwise provide an example of your own):
 
    | Type                    | Used? | Example |
    | ----------------------- | ----- | --------|
-   | int                     | _     | _          |
-   | float                   | _     | _          |
-   | str                     | _     | _          |
-   | bool                    | _     | _          |
+   | int                     | yes     | for i in range(8)         |
+   | float                   | yes    | delay=0.25       |
+   | str                     | yes   | "Mock SenseHAT"    |    
+   | bool                    | yes  |self._low_light = False     |
 
-5. Examining `smiley.py`, provide an example of a class variable and an instance variable (attribute). Explain **why** one is defined as a class variable and the other as an instance variable.
+6. Examining `smiley.py`, provide an example of a class variable and an instance variable (attribute). Explain **why** one is defined as a class variable and the other as an instance variable.
 
 > Your answer here
 >
@@ -160,28 +160,28 @@ python3 main.py
 Compare and contrast the classes Happy and Sad.
 
 1. What is the key difference between the two classes?
-   > Your answer here
+   > The main difference is that Happy implements the Blinkable interface and defines a blink() method, while Sad does not. Happy has dynamic eye movement; Sad is static.
    >
 2. What are the key similarities?
-   > Your answer here
+   > Both inherit from Smiley, use the same eye and mouth drawing patterns (with different pixel placements), and override methods to define their facial expressions.
    >
 3. What difference stands out the most to you and why?
-   > Your answer here
+   > The lack of blinking in Sad stands out most. Since blinking adds realism and emotion, its absence makes the Sad smiley feel less lifelike or expressive.
    >
 4. How does this difference affect the functionality of these classes
-   > Your answer here
+   > Only Happy responds to the .blink() method, making it more interactive. Trying to blink a Sad instance would raise an error unless manually implemented.
    >
 
 ### 2.6. Where is the Sense(Hat) in the code?
 
 1. Which class(es) utilize the functionality of the SenseHat?
-   > Your answer here
+   > The Smiley class directly uses the SenseHat. All subclasses (Happy, Sad, etc.) inherit from Smiley and thus inherit this functionality.
    >
 2. Which of these classes directly interact with the SenseHat functionalities?
-   > Your answer here
+   > Only Smiley uses SenseHat explicitly via self.sense_hat.set_pixels and self.sense_hat.low_light. Others use the .show() method inherited from Smiley.
    >
 3. Discuss the hiding of the SenseHAT in terms of encapsulation (100-200 Words)
-   > Your answer here
+   > Encapsulation is the practice of hiding internal state and requiring all interaction to be performed through an object's methods. In this project, the SenseHat is fully encapsulated within the Smiley class.
    >
 
 ### 2.7. Sad Smileys Can’t Blink (Or Can They?)
